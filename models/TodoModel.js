@@ -6,6 +6,8 @@ export class TodoModel {
             { id: "1", text: "First todo", complete: false },
             { id: "2", text: "Second todo", complete: false },
         ];
+
+        this.onUpdated = () => {};
     }
 
     addTodo(text) {
@@ -14,10 +16,12 @@ export class TodoModel {
             text: text,
             complete: false,
         });
+        this.onUpdated(this.todos);
     }
 
     removeTodo(id) {
         this.todos = this.todos.filter((todo) => todo.id !== id);
+        this.onUpdated(this.todos);
     }
 
     editTodo(id, text) {
@@ -28,6 +32,7 @@ export class TodoModel {
                 return todo;
             }
         });
+        this.onUpdated(this.todos);
     }
 
     toggleTodo(id) {
@@ -42,5 +47,6 @@ export class TodoModel {
                 return todo;
             }
         });
+        this.onUpdated(this.todos);
     }
 }
