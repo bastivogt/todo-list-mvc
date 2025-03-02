@@ -70,10 +70,13 @@ class View {
         this.form.append(this.input, this.submit);
         this.app.append(this.title, this.form, this.todoList);
 
+        this.tempTodoText = null;
+
         // event callbacks
         this.onAdd = () => {};
         this.onDelete = () => {};
         this.onToggle = () => {};
+        this.onEdit = () => {};
 
         this.submit.addEventListener("click", (e) => {
             e.preventDefault();
@@ -91,6 +94,7 @@ class View {
     }
 
     displayTodos(todos) {
+        this.tempTodoText = null;
         while (this.todoList.firstChild) {
             this.todoList.removeChild(this.todoList.firstChild);
         }
@@ -137,6 +141,20 @@ class View {
                     const id = e.target.parentElement.id;
                     this.onToggle(id);
                 });
+
+                span.addEventListener("input", (e) => {
+                    const id = e.target.parentElement.id;
+                    this.tempTodoText = e.target.textContent;
+                    console.log(this.tempTodoText);
+                });
+
+                span.addEventListener("focusout", (e) => {
+                    const id = e.target.parentElement.id;
+                    if (this.tempTodoText) {
+                        this.onEdit(id, this.tempTodoText);
+                    }
+                    this.tempTodoText = null;
+                });
             });
         }
 
@@ -166,6 +184,12 @@ class Controller {
         this.view.onToggle = (id) => {
             console.log("onToggle: ", id);
             this.model.toggleTodo(id);
+            this.view.displayTodos(this.model.todos);
+        };
+
+        this.view.onEdit = (id, text) => {
+            console.log("onEdit: ", id, text);
+            this.model.editTodo(id, text);
             this.view.displayTodos(this.model.todos);
         };
     }
