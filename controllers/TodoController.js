@@ -5,10 +5,10 @@ export class TodoController {
 
         this.model.onUpdated = (todos) => {
             console.log("model updated: ");
-            this.view.displayTodos(todos);
+            this.view.drawTodos(todos);
         };
 
-        this.view.displayTodos(this.model.todos);
+        this.view.drawTodos(this.model.todos);
 
         this.view.onAdd = (text) => {
             console.log("onAdd: ", text);

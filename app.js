@@ -6,7 +6,7 @@ import { DOM } from "./helper.js";
 const ikke = DOM.getElement("#ikke");
 
 // const model = new TodoModel();
-// const view = new TodoView(root);
+// const view = new TodoView({ rootElemet: ikke, title: "Ikke" });
 // const controller = new TodoController(model, view);
 
 new TodoController(

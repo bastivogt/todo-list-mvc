@@ -50,7 +50,7 @@ export class TodoView {
         this.input.value = "";
     }
 
-    displayTodos(todos) {
+    drawTodos(todos) {
         this.tempTodoText = null;
         while (this.todoList.firstChild) {
             this.todoList.removeChild(this.todoList.firstChild);
