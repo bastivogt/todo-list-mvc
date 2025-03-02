@@ -1,10 +1,21 @@
-import { TodoModel } from "./TodoModel.js";
-import { TodoView } from "./TodoView.js";
-import { TodoController } from "./TodoController.js";
+import { TodoModel } from "./models/TodoModel.js";
+import { TodoView } from "./views/TodoView.js";
+import { TodoController } from "./controllers/TodoController.js";
 import { DOM } from "./helper.js";
 
-const root = DOM.getElement("#root");
+const ikke = DOM.getElement("#ikke");
 
-const model = new TodoModel();
-const view = new TodoView(root);
-const controller = new TodoController(model, view);
+// const model = new TodoModel();
+// const view = new TodoView(root);
+// const controller = new TodoController(model, view);
+
+new TodoController(
+    new TodoModel(),
+    new TodoView({ rootElemet: ikke, title: "Ikke" })
+);
+
+const du = DOM.getElement("#du");
+new TodoController(
+    new TodoModel(),
+    new TodoView({ rootElemet: du, title: "Du" })
+);

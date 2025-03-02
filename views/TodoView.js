@@ -1,11 +1,11 @@
-import { DOM } from "./helper.js";
+import { DOM } from "../helper.js";
 
 export class TodoView {
-    constructor(rootElemet) {
+    constructor({ rootElemet, title = "Todo MVC" }) {
         this.app = rootElemet;
 
         this.title = DOM.createElement({ tag: "h1" });
-        this.title.textContent = "Todo MVC";
+        this.title.textContent = title;
 
         this.form = DOM.createElement({ tag: "form", id: "todo-form" });
 
